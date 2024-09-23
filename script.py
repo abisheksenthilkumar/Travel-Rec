@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # Load the dataset
 data = pd.read_csv('filtered_semidata_cleaned_with_weather.csv')
@@ -21,6 +22,7 @@ def recommend_vacations(user_preferences):
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/recommend-vacations', methods=['POST'])
 def recommend():
